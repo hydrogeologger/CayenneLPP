@@ -4,6 +4,9 @@
  *
  * Adapted for lora-app-server from https://gist.github.com/iPAS/e24970a91463a4a8177f9806d1ef14b8
  *
+ * Data Type
+ * LPP_DATA_TYPE = IPSO_OBJECT_ID - 3200
+ * 
  * Type                 IPSO    LPP     Hex     Data Size   Data Resolution per bit
  *  Digital Input       3200    0       0       1           1
  *  Digital Output      3201    1       1       1           1
@@ -29,6 +32,7 @@
  *  Percentage          3320    120     78      1           1% Unsigned
  *  Altitude            3321    121     79      2           1m Signed MSB
  *  Concentration       3325    125     7D      2           1 PPM unsigned : 1pmm = 1 * 10 ^-6 = 0.000 001
+ *  Conductivity        3327    127     7F      21          0.1 uS/cm Unsigned
  *  Power               3328    128     80      2           1 W Unsigned MSB
  *  Distance            3330    130     82      4           0.001m Unsigned MSB
  *  Energy              3331    131     83      4           0.001kWh Unsigned MSB
@@ -61,6 +65,7 @@ function lppDecode(bytes) {
         120: {'size': 1, 'name': 'percentage', 'signed': false, 'divisor': 1},
         121: {'size': 2, 'name': 'altitude', 'signed': true, 'divisor': 1},
 		125: {'size': 2, 'name': 'concentration', 'signed': false, 'divisor': 1},
+        127: {'size': 21, 'name': 'conductivity', 'signed': false, 'divisor': 10},
         128: {'size': 2, 'name': 'power', 'signed': false, 'divisor': 1},
         130: {'size': 4, 'name': 'distance', 'signed': false, 'divisor': 1000},
         131: {'size': 4, 'name': 'energy', 'signed': false, 'divisor': 1000},
@@ -149,6 +154,16 @@ function lppDecode(bytes) {
 
     return sensors;
 
+}
+
+
+/* Thingsboard Decoder */
+function Decode(fPort, bytes, variables) {
+    var response = {};
+    lppDecode(bytes, 1).forEach(function (field) {
+        response[field['name'] + '_' + field['channel']] = field['value'];
+    });
+    return response;
 }
 
 // To use with TTN

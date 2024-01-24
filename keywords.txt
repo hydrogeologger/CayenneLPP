@@ -38,6 +38,7 @@ addCurrent	KEYWORD2
 addFrequency	KEYWORD2
 addPercentage	KEYWORD2
 addAltitude	KEYWORD2
+addConductivity KEYWORD2
 addPower	KEYWORD2
 addDistance	KEYWORD2
 addEnergy	KEYWORD2

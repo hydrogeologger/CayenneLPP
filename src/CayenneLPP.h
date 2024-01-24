@@ -24,6 +24,7 @@
 #include "CayenneLPPPolyline.h"
 #endif
 
+// LPP_DATA_TYPE = IPSO_OBJECT_ID - 3200
 #define LPP_DIGITAL_INPUT 0         // 1 byte
 #define LPP_DIGITAL_OUTPUT 1        // 1 byte
 #define LPP_ANALOG_INPUT 2          // 2 bytes, 0.01 signed
@@ -41,6 +42,7 @@
 #define LPP_PERCENTAGE 120          // 1 byte 1-100% unsigned
 #define LPP_ALTITUDE 121            // 2 byte 1m signed
 #define LPP_CONCENTRATION 125       // 2 bytes, 1 ppm unsigned
+#define LPP_CONDUCTIVITY 127        // 21 bytes, 0.1 uS/cm unsigned
 #define LPP_POWER 128               // 2 byte, 1W, unsigned
 #define LPP_DISTANCE 130            // 4 byte, 0.001m, unsigned
 #define LPP_ENERGY 131              // 4 byte, 0.001kWh, unsigned
@@ -69,6 +71,7 @@
 #define LPP_FREQUENCY_SIZE 4
 #define LPP_PERCENTAGE_SIZE 1
 #define LPP_ALTITUDE_SIZE 2
+#define LPP_CONDUCTIVITY_SIZE 21
 #define LPP_POWER_SIZE 2
 #define LPP_DISTANCE_SIZE 4
 #define LPP_ENERGY_SIZE 4
@@ -98,6 +101,7 @@
 #define LPP_FREQUENCY_MULT 1
 #define LPP_PERCENTAGE_MULT 1
 #define LPP_ALTITUDE_MULT 1
+#define LPP_CONDUCTIVITY_MULT 10
 #define LPP_POWER_MULT 1
 #define LPP_DISTANCE_MULT 1000
 #define LPP_ENERGY_MULT 1000
@@ -198,6 +202,9 @@ public:
 #endif
 #ifndef CAYENNE_DISABLE_ALTITUDE
   uint8_t addAltitude(uint8_t channel, float value);
+#endif
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+  uint8_t addConductivity(uint8_t channel, float value);
 #endif
 #ifndef CAYENNE_DISABLE_POWER
   uint8_t addPower(uint8_t channel, uint32_t value);
