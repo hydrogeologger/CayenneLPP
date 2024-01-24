@@ -101,6 +101,9 @@ bool CayenneLPP::isType(uint8_t type) {
 #ifndef CAYENNE_DISABLE_ALTITUDE
     case LPP_ALTITUDE:
 #endif
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+    case LPP_CONDUCTIVITY:
+#endif
 #ifndef CAYENNE_DISABLE_POWER
     case LPP_POWER:
 #endif
@@ -222,6 +225,11 @@ const char * CayenneLPP::getTypeName(uint8_t type) {
 #ifndef CAYENNE_DISABLE_ALTITUDE
         case LPP_ALTITUDE:
           return "altitude";
+#endif
+
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+        case LPP_CONDUCTIVITY:
+          return "conductivity";
 #endif
 
 #ifndef CAYENNE_DISABLE_POWER
@@ -364,6 +372,11 @@ uint8_t CayenneLPP::getTypeSize(uint8_t type) {
       return LPP_ALTITUDE_SIZE;
 #endif
 
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+    case LPP_CONDUCTIVITY:
+      return LPP_CONDUCTIVITY_SIZE;
+#endif
+
 #ifndef CAYENNE_DISABLE_POWER
     case LPP_POWER:
       return LPP_POWER_SIZE;
@@ -501,6 +514,11 @@ uint32_t CayenneLPP::getTypeMultiplier(uint8_t type) {
 #ifndef CAYENNE_DISABLE_ALTITUDE
     case LPP_ALTITUDE:
       return LPP_ALTITUDE_MULT;
+#endif
+
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+    case LPP_CONDUCTIVITY:
+      return LPP_CONDUCTIVITY_MULT;
 #endif
 
 #ifndef CAYENNE_DISABLE_POWER
@@ -720,6 +738,12 @@ uint8_t CayenneLPP::addPercentage(uint8_t channel, uint32_t value) {
 #ifndef CAYENNE_DISABLE_ALTITUDE
 uint8_t CayenneLPP::addAltitude(uint8_t channel, float value) {
   return addField(LPP_ALTITUDE, channel, value);
+}
+#endif
+
+#ifndef CAYENNE_DISABLE_CONDUCTIVITY
+uint8_t CayenneLPP::addConductivity(uint8_t channel, float value) {
+  return addField(LPP_CONDUCTIVITY, channel, value);
 }
 #endif
 
