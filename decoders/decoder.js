@@ -3,7 +3,7 @@
  * @reference http://openmobilealliance.org/wp/OMNA/LwM2M/LwM2MRegistry.html#extlabel
  *
  * Adapted for lora-app-server from https://gist.github.com/iPAS/e24970a91463a4a8177f9806d1ef14b8
- *
+ * 
  * Data Type
  * LPP_DATA_TYPE = IPSO_OBJECT_ID - 3200
  * 
@@ -48,15 +48,15 @@
 function lppDecode(bytes) {
     
     var sensor_types = {
-        0  : {'size': 1, 'name': 'digital_in', 'signed': false, 'divisor': 1},
-        1  : {'size': 1, 'name': 'digital_out', 'signed': false, 'divisor': 1},
-        2  : {'size': 2, 'name': 'analog_in', 'signed': true , 'divisor': 100},
-        3  : {'size': 2, 'name': 'analog_out', 'signed': true , 'divisor': 100},
+        0  : {'size': 1, 'name': 'digitalInput', 'signed': false, 'divisor': 1},
+        1  : {'size': 1, 'name': 'digitalOutput', 'signed': false, 'divisor': 1},
+        2  : {'size': 2, 'name': 'analogInput', 'signed': true , 'divisor': 100},
+        3  : {'size': 2, 'name': 'analogOutput', 'signed': true , 'divisor': 100},
         100: {'size': 4, 'name': 'generic', 'signed': false, 'divisor': 1},
-        101: {'size': 2, 'name': 'illuminance', 'signed': false, 'divisor': 1},
-        102: {'size': 1, 'name': 'presence', 'signed': false, 'divisor': 1},
-        103: {'size': 2, 'name': 'temperature', 'signed': true , 'divisor': 10},
-        104: {'size': 1, 'name': 'humidity', 'signed': false, 'divisor': 2},
+        101: {'size': 2, 'name': 'illuminanceSensor', 'signed': false, 'divisor': 1},
+        102: {'size': 1, 'name': 'presenceSensor', 'signed': false, 'divisor': 1},
+        103: {'size': 2, 'name': 'temperatureSensor', 'signed': true , 'divisor': 10},
+        104: {'size': 1, 'name': 'humiditySensor', 'signed': false, 'divisor': 2},
         113: {'size': 6, 'name': 'accelerometer', 'signed': true , 'divisor': 1000},
         115: {'size': 2, 'name': 'barometer', 'signed': false, 'divisor': 10},
         116: {'size': 2, 'name': 'voltage', 'signed': false, 'divisor': 100},
@@ -73,7 +73,7 @@ function lppDecode(bytes) {
         133: {'size': 4, 'name': 'time', 'signed': false, 'divisor': 1},
         134: {'size': 6, 'name': 'gyrometer', 'signed': true , 'divisor': 100},
 		135: {'size': 3, 'name': 'colour', 'signed': false, 'divisor': 1},
-        136: {'size': 9, 'name': 'gps', 'signed': true, 'divisor': [10000,10000,100]},
+        136: {'size': 9, 'name': 'gpsLocation', 'signed': true, 'divisor': [10000,10000,100]},
         142: {'size': 1, 'name': 'switch', 'signed': false, 'divisor': 1},
     };
 
